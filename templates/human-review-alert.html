@@ -1,0 +1,37 @@
+<h2>🚨 Human Review Needed</h2>
+
+<p><strong>Customer:</strong><br>
+{{ $('Get a message').item.json.from.value[0].name }}
+</p>
+
+<p><strong>Customer Email:</strong><br>
+{{ $('Get a message').item.json.from.value[0].address }}
+</p>
+
+<p><strong>Category:</strong><br>
+{{ $('Code in JavaScript').item.json.category }}
+</p>
+
+<p><strong>Priority:</strong><br>
+{{ $('Code in JavaScript').item.json.priority }}
+</p>
+
+<p><strong>Subject:</strong><br>
+{{ $('Get a message').item.json.subject }}
+</p>
+
+<p><strong>Customer Message:</strong><br>
+{{ $('Get a message').item.json.text.replace(/\n/g, '<br>') }}
+</p>
+
+<p><strong>AI Summary:</strong><br>
+{{ $('Code in JavaScript').item.json.summary }}
+</p>
+
+<p><strong>Suggested Reply:</strong><br>
+{{ $('Code in JavaScript').item.json.suggestedReply.replace(/\n/g, '<br>') }}
+</p>
+
+<p><strong>Ticket ID:</strong><br>
+{{ $('Get a message').item.json.id }}
+</p>
