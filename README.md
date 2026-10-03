@@ -40,6 +40,10 @@ IF needsHuman?
        └─ Update Ticket Status = Draft Ready
 ```
 
+### Full n8n workflow
+
+![Full n8n workflow](assets/01-full-workflow.png)
+
 ## Core Features
 
 - Monitors incoming Gmail support messages
@@ -77,6 +81,10 @@ The Google Sheet uses the following columns:
 | Status | New / In Review / Draft Ready / Replied / Closed |
 | Processed | Yes / No |
 
+### Ticket database view
+
+![Google Sheets ticket database](assets/03-ticket-database.png)
+
 ## AI Decision Logic
 
 The workflow marks tickets for human review when they involve cases such as:
@@ -88,6 +96,10 @@ The workflow marks tickets for human review when they involve cases such as:
 - cases that cannot be safely resolved from the email alone
 
 General FAQs and simple how-to requests can proceed to the normal draft path without triggering the internal escalation email.
+
+### High-priority AI output
+
+![High-priority AI output](assets/02-high-priority-ai-output.png)
 
 ## Duplicate Protection
 
@@ -101,6 +113,10 @@ If a matching row exists, the workflow routes to a **No Operation** node and sto
 
 This prevents repeated workflow executions from creating duplicate ticket rows, drafts, or alerts.
 
+### Duplicate-check branch
+
+![Duplicate protection](assets/07-duplicate-protection.png)
+
 ## Human-in-the-Loop Design
 
 The workflow deliberately creates a **draft** rather than automatically sending customer-facing responses.
@@ -112,11 +128,23 @@ For `needsHuman = true`:
 3. The ticket status is changed to `In Review`.
 4. A human reviews the response before sending it.
 
+### Human-review alert
+
+![Human review alert](assets/04-human-review-alert.png)
+
+### Draft reply for a high-priority ticket
+
+![Draft reply for high-priority ticket](assets/05-draft-reply-high-priority.png)
+
 For `needsHuman = false`:
 
 1. A reply draft is created in the original Gmail thread.
 2. No escalation alert is sent.
 3. The ticket status is changed to `Draft Ready`.
+
+### Normal-ticket draft
+
+![Normal ticket draft](assets/06-normal-ticket-draft.png)
 
 ## Example High-Priority Ticket
 
@@ -163,20 +191,6 @@ The workflow creates a draft reply without sending a human-review alert.
 | OpenAI | Classification, prioritization, summary, draft generation |
 | JavaScript | Structured JSON cleanup and parsing |
 | Google Sheets | Ticket log, duplicate detection, status tracking |
-
-## Portfolio Screenshots
-
-Screenshots can be stored in `assets/` using these filenames:
-
-```text
-assets/01-full-workflow.png
-assets/02-high-priority-ai-output.png
-assets/03-ticket-database.png
-assets/04-human-review-alert.png
-assets/05-draft-reply-high-priority.png
-assets/06-normal-ticket-draft.png
-assets/07-duplicate-protection.png
-```
 
 ## Security Notes
 
